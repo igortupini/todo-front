@@ -15,20 +15,12 @@ class App extends Component {
 						items: []
 			}
 			this.addNewTodo = this.addNewTodo.bind(this)
+			this.toggleTodo = this.toggleTodo.bind(this)
 			this.destroyTodo = this.destroyTodo.bind(this)
 		}
 		
-		componentDidMount(){
-			axios.get(API_URL)
-				.then(res => {
-					let items = res.data
-					this.setState({items})
-				})
-				.catch(e => console.error(e))
-		}
-		
 		fetchTodos(){
-			axios.get(API_URL)
+			return axios.get(API_URL)
 			.then(res => {
 				let items = res.data
 				this.setState({items})
@@ -37,26 +29,31 @@ class App extends Component {
 		}
 
 		addNewTodo(todo){
-			axios.post(API_URL,todo)
-				.then(res => {
-					this.fetchTodos()
-				})
+			return axios.post(API_URL,todo)
+				.then(res => this.fetchTodos())
 				.catch(e => console.error(e))
 		}
 
 		destroyTodo(id){
-			axios.delete(API_URL+id)
-				.then(res => {
-					this.fetchTodos()
-				})
+			return axios.delete(API_URL+id)
+				.then(res => this.fetchTodos())
 				.catch(e => console.error(e))
-//			let items = this.state.items.filter(item => (item.id !== id) && item)
-//			this.setState({items})
+		}
+
+		toggleTodo(id){
+			return axios.post(API_URL+'toggle/'+id)
+				.then(res => this.fetchTodos())
+				.catch(e => console.error(e))
+		}
+
+		componentDidMount(){
+			return this.fetchTodos()
 		}
 
   render() {
 		let addNewTodo = this.addNewTodo
 		let destroyTodo = this.destroyTodo
+		let toggleTodo = this.toggleTodo
 	  let { items } = this.state
 	return (
 	  <div className='container'>
@@ -65,7 +62,7 @@ class App extends Component {
 			<h3>Add your daily tasks here!</h3>
 		</Jumbotron>
 		<Form addNewTodo={addNewTodo} />
-		<List items={items} destroyTodo={destroyTodo} />
+		<List items={items} destroyTodo={destroyTodo} toggleTodo={toggleTodo} />
 	  </div>
 	);
   }

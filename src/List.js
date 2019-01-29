@@ -13,13 +13,13 @@ class List extends Component {
     componentWillReceiveProps(newProps){
         this.setState({items: newProps.items})
     }
-
+    
     renderList(){
         return this.state.items.map((item) => {
             return(
-                <ListGroupItem key={item.id}>
+                <ListGroupItem onClick={() => this.props.toggleTodo(item.id)} className={item.checked&&styles['checked']} key={item.id}>
                     <div className={styles['titleWrapper']}>
-                        <ListGroupItemHeading>{item.id}: {item.title}</ListGroupItemHeading>
+                        <ListGroupItemHeading>{item.title}</ListGroupItemHeading>
                         <Button color='link' onClick={() => this.props.destroyTodo(item.id)}>Delete</Button>
                     </div>
                     <ListGroupItemText>{item.content}</ListGroupItemText>
