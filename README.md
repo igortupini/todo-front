@@ -20,7 +20,7 @@ Git clone master branch, and install the project dependencies by running:
 
 Edit the API_URL on `app.js`
 
-`const API_URL = 'http://url:port/route'
+`const API_URL = 'http://url:port/route'`
 
 ## Run
 `npm start`
