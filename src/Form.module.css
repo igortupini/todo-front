@@ -1,0 +1,10 @@
+.contentInput{
+    height: 50px !important;
+    margin-top: 5px;
+    resize: none;
+    transition: height .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.contentInput:focus{
+    height: 100px !important;
+}

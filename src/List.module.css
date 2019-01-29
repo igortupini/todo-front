@@ -1,0 +1,9 @@
+.listGroup{
+    margin-top: 50px;
+}
+
+.titleWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
