@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Button} from 'reactstrap'
+import cx from 'classnames'
 import styles from './List.module.css'
 
 class List extends Component {
@@ -17,9 +18,12 @@ class List extends Component {
     renderList(){
         return this.state.items.map((item) => {
             return(
-                <ListGroupItem onClick={() => this.props.toggleTodo(item.id)} className={item.checked&&styles['checked']} key={item.id}>
+                <ListGroupItem
+                    onClick={() => this.props.toggleTodo(item.id)} 
+                    className={cx(item.checked&&styles['checked'],styles['listItem'])}
+                    key={item.id}>
                     <div className={styles['titleWrapper']}>
-                        <ListGroupItemHeading>{item.title}</ListGroupItemHeading>
+                        <ListGroupItemHeading>{item.title} - {item.created_at}</ListGroupItemHeading>
                         <Button color='link' onClick={() => this.props.destroyTodo(item.id)}>Delete</Button>
                     </div>
                     <ListGroupItemText>{item.content}</ListGroupItemText>

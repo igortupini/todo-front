@@ -23,6 +23,9 @@ class App extends Component {
 			return axios.get(API_URL)
 			.then(res => {
 				let items = res.data
+				items.sort((item,nextItem)=> {
+					return item.createdat-nextItem.createdat
+				})
 				this.setState({items})
 			})
 			.catch(e => console.error(e))
