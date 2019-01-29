@@ -24,7 +24,7 @@ class App extends Component {
 			.then(res => {
 				let items = res.data
 				items.sort((item,nextItem)=> {
-					return item.createdat-nextItem.createdat
+					return new Date(item.created_at)-new Date(nextItem.created_at)
 				})
 				this.setState({items})
 			})
@@ -44,7 +44,7 @@ class App extends Component {
 		}
 
 		toggleTodo(id){
-			return axios.post(API_URL+'toggle/'+id)
+			return axios.patch(API_URL+id)
 				.then(res => this.fetchTodos())
 				.catch(e => console.error(e))
 		}

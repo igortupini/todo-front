@@ -5,15 +5,30 @@
 .titleWrapper{
     display: flex;
     flex-direction: row;
+    vertical-align: middle;
     justify-content: space-between;
+}
+
+.titleWrapper h5{
+    line-height: 18px;
+}
+
+.inline-icon{
+    vertical-align: bottom;
+    font-size: 18px !important;
+    color: green;
 }
 
 .listItem{
     background-color: white;
     margin-bottom: 10px;
-    transition: background-color .3s linear;
+    transition: background-color .5s linear;
 }
 
 .checked{
     background-color: rgb(235,255,225);
+}
+
+.checkedContent{
+    display: none;
 }
